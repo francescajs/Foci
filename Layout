@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+ <!-- Bootstrap -->
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+  #draggable { width: 150px; height: 150px; padding: 0.5em; }
+  </style>
+  
+  <style>
+      .icono-areaChart,.icono-barChart,.icono-book,.icono-book:after,.icono-book:before,.icono-bookmarkEmpty,.icono-bookmarkEmpty:before,.icono-camera,.icono-chain:after,.icono-chain:before,.icono-clock,.icono-commentEmpty,.icono-creditCard,.icono-crop,.icono-crop:before,.icono-display,.icono-document,.icono-eye,.icono-file,.icono-flag:after,.icono-flag:before,.icono-folder,.icono-forbidden,.icono-frown,.icono-frown:after,.icono-headphone,.icono-heart,.icono-heart:after,.icono-heart:before,.icono-home,.icono-home:after,.icono-home:before,.icono-imac,.icono-imacBold,.icono-image,.icono-infinity:after,.icono-infinity:before,.icono-iphone,.icono-iphoneBold,.icono-keyboard,.icono-macbook:before,.icono-macbookBold:before,.icono-mail,.icono-mail:before,.icono-market,.icono-market:after,.icono-meh,.icono-meh:after,.icono-microphone,.icono-microphone:before,.icono-mouse,.icono-mouse:before,.icono-nexus,.icono-paperClip,.icono-paperClip:after,.icono-paperClip:before,.icono-piano,.icono-pin,.icono-pin:before,.icono-power,.icono-rename,.icono-ruler,.icono-search,.icono-signIn,.icono-signIn:before,.icono-signOut,.icono-signOut:before,.icono-smile,.icono-smile:after,.icono-stroke,.icono-sync,.icono-tag,.icono-tag:after,.icono-terminal,.icono-trash,.icono-user,.icono-user:before,.icono-video,.icono-volumeHigh:after,.icono-volumeHigh:before,.icono-volumeLow:before,.icono-volumeMedium:before,.icono-youtube,.icono-youtube:before,[class*=icono-][class*=Circle],[class*=icono-][class*=Square],[class*=icono-check][class*=Circle] {
+    border: 2px solid
+}
+
+.icono-chain:after,.icono-chain:before,.icono-downArrow:before,.icono-dropper:before,.icono-flickr:after,.icono-flickr:before,.icono-indent:before,.icono-leftArrow:before,.icono-list:before,.icono-outdent:before,.icono-paperClip:before,.icono-rename:before,.icono-rightArrow:before,.icono-upArrow:before,.icono-video:before,.icono-volumeDecrease:after,.icono-volumeDecrease:before,.icono-volumeHigh:after,.icono-volumeHigh:before,.icono-volumeIncrease:after,.icono-volumeIncrease:before,.icono-volumeLow:before,.icono-volumeMedium:before,.icono-volumeMute:after,.icono-volumeMute:before,.stickCenterV {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.icono-cup:after,.icono-display:after,.icono-display:before,.icono-imac:after,.icono-imacBold:after,.icono-imacBold:before,.icono-iphone:after,.icono-iphone:before,.icono-macbook:before,.icono-macbookBold:before,.icono-market:after,.icono-microphone:after,.icono-microphone:before,.icono-mouse:after,.icono-mouse:before,.icono-search:before,.icono-sitemap:after,.icono-sitemap:before,.icono-tag:after,.icono-trash:before,.icono-user:before,.stickCenterH,[class*=icono-exclamation]:after,[class*=icono-textAlign].icono-textAlignCenter:after,[class*=icono-textAlign].icono-textAlignCenter:before {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%)
+}
+
+.icono-camera:before,.icono-clock:after,.icono-clock:before,.icono-document:after,.icono-eye:before,.icono-forbidden:before,.icono-gear:before,.icono-gplus:after,.icono-instagram:before,.icono-keyboard:before,.icono-pin:before,.icono-video:after,.icono-youtube:after,.stickCenter,[class*=icono-check]:before,[class*=icono-cross]:after,[class*=icono-cross]:before,[class*=icono-plus]:after,[class*=icono-plus]:before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%)
+}
+
+.spin[class*=spin] {
+    -webkit-animation: loading-spinner 2s infinite linear;
+    animation: loading-spinner 2s infinite linear
+}
+
+
+.icono-dribbble:before {
+    left: -6px;
+    top: -23px
+}
+
+.icono-creditCard {
+    width: 32px;
+    height: 24px;
+    border-radius: 3px;
+    margin: 5px 1px
+}
+
+.icono-creditCard:before {
+    position: absolute;
+    top: 4px;
+    width: 100%;
+    height: 6px;
+    box-shadow: inset 0 0 0 32px
+}
+
+.icono-creditCard:after {
+    left: 3px;
+    bottom: 3px;
+    position: absolute;
+    width: 4px;
+    height: 2px;
+    box-shadow: inset 0 0 0 32px,6px 0
+}
+
+.icono-cup {
+    width: 22px;
+    height: 16px;
+    box-shadow: inset 0 0 0 32px;
+    border-radius: 0 0 5px 5px;
+    margin: 6px 6px 12px
+}
+
+.icono-cup:before {
+    position: absolute;
+    right: -3px;
+    top: 4px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px
+}
+
+.icono-cup:after {
+    bottom: -5px;
+    width: 26px;
+    height: 3px;
+    border-radius: 0 0 3px 3px;
+    box-shadow: inset 0 0 0 32px
+}
+
+.icono-play {
+    width: 0;
+    height: 0;
+    border-width: 10px 0 10px 16px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    margin: 7px 9px
+}
+
+.icono-pause {
+    width: 6px;
+    height: 20px;
+    margin: 7px 20px 7px 8px;
+    box-shadow: inset 0 0 0 32px,12px 0 0 0
+}
+
+.icono-stop {
+    width: 0;
+    height: 0;
+    border: 10px solid;
+    margin: 7px
+}
+
+.icono-rewind {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg)
+}
+
+.icono-forward,.icono-rewind {
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left: 10px solid;
+    margin: 7px
+}
+
+.icono-forward:before,.icono-rewind:before {
+    position: absolute;
+    left: 0;
+    top: -10px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left: 10px solid
+}
+
+.icono-next,.icono-previous {
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left: 10px solid;
+    border-right: none;
+    margin: 7px 14px 7px 10px;
+    box-shadow: 4px 0
+}
+
+.icono-previous {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    margin: 7px 10px 7px 14px
+}
+
+.icono-caretDown,.icono-caretDownCircle,.icono-caretDownSquare,.icono-caretLeft,.icono-caretLeftCircle,.icono-caretLeftSquare,.icono-caretRight,.icono-caretRightCircle,.icono-caretRightSquare,.icono-caretUp,.icono-caretUpCircle,.icono-caretUpSquare {
+    width: 12px;
+    height: 20px;
+    margin: 7px 11px
+}
+
+.icono-caretDown:after,.icono-caretDown:before,.icono-caretDownCircle:after,.icono-caretDownCircle:before,.icono-caretDownSquare:after,.icono-caretDownSquare:before,.icono-caretLeft:after,.icono-caretLeft:before,.icono-caretLeftCircle:after,.icono-caretLeftCircle:before,.icono-caretLeftSquare:after,.icono-caretLeftSquare:before,.icono-caretRight:after,.icono-caretRight:before,.icono-caretRightCircle:after,.icono-caretRightCircle:before,.icono-caretRightSquare:after,.icono-caretRightSquare:before,.icono-caretUp:after,.icono-caretUp:before,.icono-caretUpCircle:after,.icono-caretUpCircle:before,.icono-caretUpSquare:after,.icono-caretUpSquare:before {
+    width: 14px;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    margin: auto 0;
+    right: 2px;
+    box-shadow: inset 0 0 0 32px;
+    -webkit-transform-origin: right;
+    -ms-transform-origin: right;
+    transform-origin: right
+}
+
+.icono-caretDown:before,.icono-caretDownCircle:before,.icono-caretDownSquare:before,.icono-caretLeft:before,.icono-caretLeftCircle:before,.icono-caretLeftSquare:before,.icono-caretRight:before,.icono-caretRightCircle:before,.icono-caretRightSquare:before,.icono-caretUp:before,.icono-caretUpCircle:before,.icono-caretUpSquare:before {
+    top: 2px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg)
+}
+
+.icono-caretDown:after,.icono-caretDownCircle:after,.icono-caretDownSquare:after,.icono-caretLeft:after,.icono-caretLeftCircle:after,.icono-caretLeftSquare:after,.icono-caretRight:after,.icono-caretRightCircle:after,.icono-caretRightSquare:after,.icono-caretUp:after,.icono-caretUpCircle:after,.icono-caretUpSquare:after {
+    top: 0;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg)
+}
+
+.icono-caretLeft,.icono-caretLeftCircle,.icono-caretLeftSquare {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg)
+}
+
+.icono-caretUp,.icono-caretUpCircle,.icono-caretUpSquare {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg)
+}
+
+.icono-caretDown,.icono-caretDownCircle,.icono-caretDownSquare {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg)
+}
+
+[class*=icono-caret][class*=Circle]:after,[class*=icono-caret][class*=Circle]:before,[class*=icono-caret][class*=Square]:after,[class*=icono-caret][class*=Square]:before {
+    width: 11px;
+    right: 8px
+}
+
+.icono-downArrow,.icono-leftArrow,.icono-rightArrow,.icono-upArrow {
+    width: 16px;
+    height: 4px;
+    margin: 15px 9px;
+    box-shadow: inset 0 0 0 2px;
+    -webkit-transform: translateX(-3px);
+    -ms-transform: translateX(-3px);
+    transform: translateX(-3px)
+}
+
+.icono-downArrow:before,.icono-leftArrow:before,.icono-rightArrow:before,.icono-upArrow:before {
+    border-style: solid;
+    border-width: 8px 0 8px 8px;
+    border-color: transparent;
+    border-left-color: inherit;
+    left: 100%;
+    right: auto
+}
+
+.icono-leftArrow {
+    -webkit-transform: translateX(3px) rotate(180deg);
+    -ms-transform: translateX(3px) rotate(180deg);
+    transform: translateX(3px) rotate(180deg)
+}
+
+.icono-upArrow {
+    -webkit-transform: translateY(3px) rotate(-90deg);
+    -ms-transform: translateY(3px) rotate(-90deg);
+    transform: translateY(3px) rotate(-90deg)
+}
+
+.icono-downArrow {
+    -webkit-transform: translateY(-3px) rotate(90deg);
+    -ms-transform: translateY(-3px) rotate(90deg);
+    transform: translateY(-3px) rotate(90deg)
+}
+
+.icono-sun {
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    border-radius: 50%;
+    box-shadow: -15px 0 0 -9px,15px 0 0 -9px,0 -15px 0 -9px,0 15px 0 -9px,11px 11px 0 -9px,-11px -11px 0 -9px,11px -11px 0 -9px,-11px 11px 0 -9px;
+    margin: 6px
+}
+
+.icono-moon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 6px
+}
+
+.icono-moon:before {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: -2px;
+    left: 6px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 32px
+}
+
+.icono-cart {
+    width: 22px;
+    height: 0;
+    border-width: 14px 6px 0 2px;
+    border-style: solid;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    margin: 9px 3px 11px 9px
+}
+
+.icono-cart:before {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 32px,13px 0,-4px -20px 0 1px;
+    top: 2px;
+    left: -3px
+}
+
+.icono-sitemap {
+    width: 24px;
+    height: 2px;
+    box-shadow: 0 -5px;
+    margin: 21px 5px 11px
+}
+
+.icono-sitemap:before {
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 32px,11px 0,-11px 0,0 -14px 0 1px
+}
+
+.icono-sitemap:after {
+    width: 2px;
+    height: 10px;
+    box-shadow: 0 -7px,11px -5px,-11px -5px
+}
+
+[class*=icono-] {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    font-style: normal;
+    color: #ddd;
+    text-align: left;
+    text-indent: -9999px;
+    direction: ltr
+}
+
+[class*=icono-]:after,[class*=icono-]:before {
+    content: '';
+    pointer-events: none
+}
+
+[class*=icono-][class*=Circle] {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin: 2px
+}
+
+[class*=icono-][class*=Square] {
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+    margin: 2px
+}
+
+[class*=icono-],[class*=icono-] * {
+    box-sizing: border-box
+}
+
+body,*{
+  margin: 0;
+}
+.container{
+  background-color: #2ba5bb;
+}
+.stage {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+label.demo {
+    display: inline-block;
+    min-width: 15%;
+    padding: 30px 15px;
+    text-align: center;
+    color: #fff;
+}
+h2{
+  padding-top: 50px;
+  margin-bottom: 25px;
+  color: #fff;
+  text-align: center;
+  font-size: 50px;
+}
+  </style>
+  
+  
+  
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#draggable" ).draggable();
+  } );
+  </script>
+
+<style>
+    Body {
+  font-family: Sans-serif;
+  font size: 14;
+  width: 100%;
+  background-color: #E0E0E0;
+}
+
+h1 {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+}
+
+menu {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+menu.kanban .viewlist,
+menu.list .viewkanban {
+  display: inline;
+}
+
+menu.kanban .viewkanban,
+menu.list .viewlist {
+  display: none;
+}
+
+.dd {
+  max-width: 100%;
+  top: 88px;
+  margin: 0 auto;
+  display: block;
+  vertical-align: top;
+}
+
+ol {
+  transition: border-color 2s ease, all 0.1s ease;
+}
+
+ol.list {
+  padding-top: 2em;
+  padding-left: 15px;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+ol.list .text {
+  float: right;
+  width: 60%;
+}
+
+ol.list h3,
+ol.list .actions,
+ol.list label {
+  float: left;
+  width: 30%;
+}
+
+ol.list > li,
+ol.list > h3 {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+ol.list > h2 {
+  padding-bottom: 6px;
+}
+
+ol.list.To-do {
+  border-left: 2px solid #FFB300;
+}
+
+ol.list.Gone {
+  border-left: 2px solid #FF3D00;
+}
+
+ol.list.progress {
+  border-left: 2px solid #29B6F6;
+}
+
+ol.list.Done {
+  border-left: 2px solid #8BC34A;
+}
+  </script>
+
+H2,
+h1,
+button {
+  margin-left: 5px;
+  font-family: 'Arbutus Slab', serif;
+}
+ 
+h2 {
+  color: #607D8B;
+}
+
+h2 .material-icon<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+{
+  color: #B0BEC5;
+  line-height: 1.5;
+}
+
+.dd-handle .material-icons {
+  color: #B0BEC5;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 2rem;
+  position: relative;
+  right: 0;
+  color: #607D8B;
+  padding: 5px 16px;
+}
+
+button>.material-icons {
+  line-height: 0.2;
+  position:relative;
+  top:7px;
+}
+
+.dd-item:hover,
+button:hover {
+  color: #00838F;
+  will-change: box-shadow;
+  transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0 5px 6px 0 rgba(0, 0, 0, .14), 0 3px 1px -6px rgba(0, 0, 0, .2), 2px 5px 3px 0 rgba(0, 0, 0, .12);
+}
+
+button.addButton {
+  background-color: #EEEEEE;
+  color: #607D8B;
+  width: 100%;
+}
+
+.list > button.addButton {
+  max-width: 330px;
+}
+
+button:active, button:down, button:focus {box-shadow: 0 0 0 0, 0 0 0 0 rgba(0, 0, 0, .2), 0 0 0 0 rgba(0, 0, 0, .12);color:#00838F;}
+button {
+  align-items: center;
+  background-color: #EEEEEE;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  color: #607D8B;
+  position: relative;
+  margin: 0;
+  min-width: 44px;
+  padding: 10px 16px;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1;
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+    }
+
+ol.kanban.To-do {
+  border-top: 5px solid #FFB300;
+}
+
+ol.kanban.Gone {
+  border-top: 5px solid #FF3D00;
+}
+
+ol.kanban.progress {
+  border-top: 5px solid #29B6F6;
+}
+
+ol.kanban.Done {
+  border-top: 5px solid #8BC34A;
+}
+
+ol.kanban {
+  border-top: 5px solid #78909C;
+  width: 20%;
+  height: auto;
+  margin: 1%;
+  max-width: 250px;
+  min-width: 120px;
+  display: inline-block;
+  vertical-align: top;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  flex-direction: column;
+  min-height: 200px;
+  z-index: 1;
+  position: relative;
+  background: #fff;
+  padding: 1em;
+  border-radius: 2px;
+}
+
+.dd-item {
+  display: block;
+  position: relative;
+  list-style: none;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  min-height: 48px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-size: 16px;
+  min-height: 120px;
+  overflow: hidden;
+  z-index: 1;
+  position: relative;
+  background: #fff;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.title {
+  align-self: flex-end;
+  color: inherit;
+  display: block;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 24px;
+  line-height: normal;
+  overflow: hidden;
+  -webkit-transform-origin: 149px 48px;
+  transform-origin: 149px 48px;
+  margin: 0;
+}
+
+.text {
+  color: grey;
+  border-top: 1px solid font-size: 1rem;
+  font-weight: 400;
+  line-height: 18px;
+  overflow: hidden;
+  padding: 16px;
+  width: 90%;
+}
+
+.actions {
+  border-top: 1px solid rgba(0, 0, 0, .1);
+  font-size: 8px;
+  line-height: normal;
+  width: 100%;
+  color: #B0BEC5;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+
+/**
+ * Nestable
+ */
+
+.dd {
+  position: relative;
+  display: block;
+  list-style: none;
+}
+
+.dd-list {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dd-list .dd-list {
+  padding-left: 30px;
+}
+
+.dd-collapsed .dd-list {
+  display: none;
+}
+
+.dd-item {
+  display: block;
+  margin: 5px 0;
+  padding: 5px 10px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  div id="draggable" class="ui-widget-content"></div>
+}
+
+.dd-item:hover {
+  background: #fff;
+}
+
+.dd-item > button {
+  display: block;
+  position: relative;
+  cursor: move;
+  float: left;
+  width: 25px;
+  height: 20px;
+  margin: 5px 0;
+  padding: 0;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  font-weight: bold;
+}
+
+.dd-item > button:before {
+  content: '+';
+  display: block;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  text-indent: 0;
+}
+
+.dd-item > button[data-action="collapse"]:before {
+  content: '<i class="material-icons">filter_none</i>';
+}
+
+.dd-placeholder,
+.dd-empty {
+  margin: 5px 0;
+  padding: 0;
+  min-height: 30px;
+  background: #E0E0E0;
+  border: 1px dashed #b6bcbf;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.dd-empty {
+  border: 1px dashed #bbb;
+  min-height: 100px;
+  background-color: #E0E0E0;
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px;
+}
+
+.dd-dragel {
+  position: absolute;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.dd-dragel > .dd-item .dd-handle {
+  margin-top: 0;
+  cursor: move;
+}
+
+.dd-dragel .dd-item {
+  -webkit-box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .5);
+  box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .5);
+  cursor: move;
+}
+</style>
+
+</head> 
+
+<body>
+
+<div id="p1" class="mdl-progress mdl-js-progress"></div>
+<script>
+  document.querySelector('#p1').addEventListener('mdl-componentupgraded', function() {
+    this.MaterialProgress.setProgress(44);
+  });
+
+</script>
+
+<script>
+    function addButton(){
+      <li class="dd-item" data-id="5">
+      <h3 class="title dd-handle"><i class=" material-icons "></i>Task </h3> 
+        <div class="text" contenteditable="true">Description</div><div class="actions"></div>
+        <div class="checkbox">
+        <label><input type="checkbox" value="">Completed!</label>
+      </div>
+    </li>
+    }
+</script>
+
+<script>
+    function addMember(){
+       <ol class="kanban To-do">
+    <div class="kanban__title">
+      <h2><i class="material-icons"></i> Member #1</h2></div>
+   <li class="dd-item" data-id="1">
+      <h3 class="title dd-handle"><i class=" material-icons">
+   </i>Task #1</h3>
+      <div class="text" contenteditable="true">Description</div><div class="actions"></div>
+      <div class="checkbox">
+        <label><input type="checkbox" value="">Completed!</label>
+      </div>
+  </li>
+    
+    <div class="actions">
+      <button class="addButton()"><i class="material-icons"><p>&oplus;</p></i> 
+     
+      Add new</button>
+    </div>
+  </ol> 
+    }
+</script>
+
+<div class="kanban__title">
+      <h1><i class="material-icons"></i> Group Task Organizer</h1></div>
+<div class="dd">
+
+  <ol class="kanban To-do">
+    <div class="kanban__title">
+      <h2><i class="material-icons"></i> Member #1</h2></div>
+   <li class="dd-item" data-id="1">
+      <h3 class="title dd-handle"><i class=" material-icons">
+   </i>Task #1</h3>
+      <div class="text" contenteditable="true">Description</div><div class="actions"></div>
+      <div class="checkbox">
+        <label><input type="checkbox" value="">Completed!</label>
+      </div>
+  </li>
+    
+    <div class="actions">
+      <button class="addButton()"><i class="material-icons"><p>&oplus;</p></i> 
+     
+      Add new</button>
+    </div>
+  </ol>
+  <ol class="kanban progress">
+    <h2><i class="material-icons"></i> Member #2</h2>
+      <li class="dd-item" data-id="5">
+      <h3 class="title dd-handle"><i class=" material-icons">
+      </i>Task #1</h3>
+        <div class="text" contenteditable="true">Description</div><div class="actions"></div>
+        <div class="checkbox">
+        <label><input type="checkbox" value="">Completed!</label>
+      </div>
+    </li>
+    <div class="actions">
+      <button class="addButton()"><i class="material-icons"><p>&oplus;</p></i> Add new</button>
+    </div>
+  </ol>
+  
+  <ol class="kanban  Done">
+    <h2><i class="material-icons"></i> Member #3</h2>
+      <li class="dd-item" data-id="5">
+      <h3 class="title dd-handle"><i class=" material-icons "></i>Task #1</h3> 
+        <div class="text" contenteditable="true">Description</div>
+        <div class="actions"></div>
+         <div class="checkbox">
+        <label><input type="checkbox" value="">Completed!</label>
+      </div>
+    </li>      
+
+    <div class="actions">
+      <button class="addButton()"><i class="material-icons"><p>&oplus;</p></i> Add new</button>
+    </div>
+  </ol>
+  <ol class="kanban Gone">
+    <h2><i class="material-icons"></i> Member #4</h2>
+     <li class="dd-item" data-id="5">
+      <h3 class="title dd-handle"><i class=" material-icons "></i>Task #1</h3>
+        <div class="text" contenteditable="true">Description</div><div class="actions"></div>
+        <div class="checkbox">
+        <label><input type="checkbox" value="">Completed!</label>
+      </div>
+    </li>
+    <div class="actions">
+      <button class="addButton()"><i class="material-icons"><p>&oplus;</p></i> Add new</button>
+    </div>
+  </ol>
+
+</div>
+<menu class="kanban">
+  <button><i class="addMember()"><p>&oplus;</p></i> New Member</button></menu>
+
+</body>
+
+
+</html>
